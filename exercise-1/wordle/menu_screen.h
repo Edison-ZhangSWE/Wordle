@@ -14,3 +14,4 @@ void print_menu_screen(){
     std::cout << "5. Exit" << std::endl << std::endl << std::endl;
     std::cout << "Select an option:" << std::endl;
 }
+#endif
