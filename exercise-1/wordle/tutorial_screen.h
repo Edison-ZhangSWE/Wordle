@@ -1,8 +1,8 @@
 #ifndef TUTORIAL_SCREEN_H
 #define TUTORIAL_SCREEN_H
 
-def print_Tutorial_screen(){
-    // HOW TO PLAY, MAIN MENU
+void print_Tutorial_screen(){
+// HOW TO PLAY, MAIN MENU
 std::cout << "=============================================" << std::endl;
 std::cout << "                 HOW TO PLAY                 " << std::endl;
 std::cout << "=============================================" << std::endl;
@@ -32,5 +32,5 @@ std::cout << "U is not in the word in any spot.";
 std::cout << std::endl;
 std::cout << std::endl;
 std::cout << "Press [enter] to continue";
-
 }
+#endif
