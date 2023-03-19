@@ -35,26 +35,3 @@ std::cout << "Press [enter] to continue";
 }
 #endif
 
-//Calculate the variables for the stats
-
-int TimesPlayed = 0;
-vector<int> averageAttemptsVec = {}; // vector of number of attempts
-int wins = 0; //(increment after each win)
-float winPercentage = 0;
-int currentStreak = 0;
-int longestStreak = 0;
-
-//after each iteration of the program,
-TimesPlayed++;
-averageAttempts = (int)reduce(averageAttemptsVec.begin(), averageAttemptsVec.end()) / averageAttemptsVec.length(); // #include <numeric>
-winPercentage = (float)wins / (float)TimesPlayed // #include <iomanip>
-winPercentage.setprecision(2);
-if (win == true){ // MAKE SURE TO USE A BOOLEAN CALLED WIN
-    currentStreak++;
-    if(currentStreak > longestStreak){
-        longestStreak = currentStreak;
-    }
-}
-elif (win == false){
-    currentStreak = 0;
-}
