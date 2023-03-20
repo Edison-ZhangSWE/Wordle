@@ -18,25 +18,21 @@ void read_stats(Stats& stats) {
         stats.Wins.clear()
         file >> stats.gameState
              >> stats.timesPlayed
-             >> stats.Attempts
+             >> stats.AverageAttempts
              >> stats.winPercentage
              >> stats.currentStreak
              >> stats.longestStreak;
              std::string line;
-             getline(file, line)
+             getline(file, line);
         while (getline(file, line)) {
             std::istringstream iss(line); // this istringstream command stores the variables into a line
-            std::string correctWord, wasitawin;
+            std::string word, win;
             int attempt; // changes the vars on the txt file, with a \n
-            for (int n=0; n<4; n++)
-            {
-                int val;
-                iss >> correctword >> attempt >> wasitawin;
-                std::cout << val << '\n';
-            }
-            stats.Words.push_back(correctWord);
+            iss >> word >> attempt >> win;
+            
+            stats.Words.push_back(word);
             stats.Attempts.push_back(attempt);
-            stats.Wins.push_back(wasitawin);
+            stats.Wins.push_back(win);
         }
         stats.gameState = 1;
     } 
@@ -57,17 +53,14 @@ void modify_stats(Stats& stats){ // & lets us change the real variables
         for (std::string win : stats.Wins){
             if (win == "Yes"){
                 numWins ++, currentStreak ++;
-                if (currentStreak > longestStreak){
-                longestStreak = currentStreak;
-            }     
-            }
+                if (currentStreak > longestStreak) longestStreak = currentStreak;
+            }  
             else{ //this means it was a loss.
                 currentStreak = 0;
             }
         }
-    }
-        for (int i : stats.Attempts){
-            attemptSum += 1;
+    
+        for (int i : stats.Attempts) attemptSum += 1; 
             stats.timesPlayed = stats.Words.size();
             stats.averageAttempts = stats.timesPlayed ? attemptSum/stats.Attempts.size() : 0; 
             // if its true, it will give the number, if its false it will give 0.
@@ -76,15 +69,13 @@ void modify_stats(Stats& stats){ // & lets us change the real variables
             stats.currentStreak = currentStreak;
             stats.longestStreak = longestStreak;
             file >> stats.gameState << ' ' << stats.timesPlayed << ' ' << stats.averageAttempts << ' ' << stats.winPercentage <<
-            ' ' << stats.currentSTreak << ' ' << stats.longestStreak << '\n';
+            ' ' << stats.currentStreak << ' ' << stats.longestStreak << '\n';
             for (int i = 0; i< stats.Words.size(); i++){
                 file << stats.Words[i] << ' ' << stats.Attempts[i] << ' ' << stats.Wins[i] << '\n';
             }
             file.close();
         }
-        else {
-            std::cerr << "Error: Could not open file." << std::endl;
-        }
+        else std::cerr << "Error: Could not open file." << std::endl;
 }
         void ResetStatsFile() {
             std::ofstream file("stats.txt", std::ios::trunc); //clears the files
@@ -94,10 +85,7 @@ void modify_stats(Stats& stats){ // & lets us change the real variables
                 // longestStreak.
                 file.close();
             }
-            else{
-                std::cerr << "Error: Could not open file." << std::endl;
-                
-            }
+            else std::cerr << "Error: Could not open file." << std::endl;     
         }
 #endif        
 //Calculate the variables for the stats

@@ -11,42 +11,42 @@
 void printTopScreen(std::string COLOR) {
     std::cout << COLOR << " --- " << RESET;
     }
-void printMiddleScreen(char a, std::string COLOR) {
+void printMiddleScreen(char c, std::string COLOR) {
     std::cout << COLOR << "| " << a << " |" << RESET;
     }
 void printBottomScreen(std::string COLOR) {
     std::cout << COLOR << " --- " << RESET;
     }
-void printScreen(std::vector<std::string> guesses, std::string correctWord, std::string wordleGameState, std::vector<std::vector<std::string>> colors){
+void printScreen(std::vector<std::string> guesses, std::string answer, std::string gameState, std::vector<std::vector<std::string>> colors){
     system("clear");
-    
+
 for (int i = 0; i<5; i++){ // loops through our guesses
     for (int j = 0; j<5; j++){
         printTopScreen(colors[i][j]); // prints the top of the header with our specified color
 }
 std::cout << std::endl;
-for (int i = 0; i<5; i++){
+for (int j = 0; j<5; j++){
     printMiddleScreen(guesses[i][j], colors[i][j]); // prints the middle part, with the array index of our guess
     // array of an array because there are multiple guesses and multiple letters in a guess. same for colors
 }
 std::cout << std::endl; 
-for (int i = 0; i<5; i++){
+for (int j = 0; j<5; j++){
     printBottomScreen(colors[i][j]);
 }
 std::cout << std::endl;
-}
+}   
 std::cout << std::endl;
 std::cout << std::endl;
 std::cout << std::endl;
 // VICTORY SCREEN
-if (wordleGameState == "win"){
+if (gameState == "win"){
 std::cout << std::endl;
 std::cout << "Splendid!" << std::endl;
 std::cout << std::endl;
 std::cout << "Press [enter] to continue";
 }
 // DEFEAT SCREEN
-else if (wordleGameState == "lose"){
+else if (gameState == "lose"){
 std::cout << std::endl;
 std::cout << "The word was: " << correctWord << std::endl;
 std::cout << std::endl;

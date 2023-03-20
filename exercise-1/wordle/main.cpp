@@ -6,8 +6,75 @@
 #include <vector>
 
 using namespace std;
+    struct Stats{
+        int gameState, timesPlayed, averageAttempts, winPercentage, currentStreak, longestStreak;
+        vector<string> Words;
+        vector<string> Wins;
+        vector<int> Attempts;
+    };
 
-int main(int argc, char* argv[]) {
+    #include "menu_screen.h"
+    #include "modify_stats.h"
+    #include "stats_screen.h"
+    #include "tutorial_screen.h"
+    #include "wordle.h"
+
+    int main(int argc, char* argv[]) {
+        Stats stats;
+        string user_option;
+
+        system("clear"); // reading the stats and printing the menu screen
+        read_stats(stats);
+        modify_stats(stats);
+        print_menu_screen();
+
+
+        while (cin >> user_option){ // makes sure that the user's input is within the parameters of 1-5.
+            cin.ignore(); //51234
+            if (user_option == "1"){ // starts a game, updates the stats file before the game ends
+                system("clear");
+                stats.gameState = 2;
+                modify_stats(stats);
+                startGame(stats);
+                stats.gameState = 1;
+                modify_stats(stats);
+            }
+            else if (user_option == "2"){ // prints out tutorial screen
+                while (!user_option.empty()){
+                    system("clear");
+                    print_Tutorial_screen();
+                    getline(cin, user_option);
+                }
+            }
+            else if (user_option == "3"){ // prints out stats screen
+                while (!user_option.empty()){
+                    system("clear");
+                    print_stats_screen(stats.timesPlayed, stats.averageAttempts, stats.winPercentage, stats.currentStreak, stats.longestStreak, stats.Words, stats.Attempts, stats.Wins);
+                    getline(cin, user_option);
+                }
+            }
+            else if (user_option == "4"){ // Resets stats file (stats.txt) and prints out stats screen.
+                ResetStatsFile();
+                read_stats(stats);
+                while (!user_option.empty()){
+                    system("clear");
+                    print_stats_screen(stats.timesPlayed, stats.averageAttempts, stats.winPercentage, stats.currentStreak, stats.longestStreak, stats.Words, stats.Attempts, stats.Wins);
+                    getline(cin, user_option);
+                }
+            }
+            else if (user_option == "5"){ // exits the wordle game, updates the game state so the keyboard knows
+                stats.gameState = 0;
+                modify_stats(stats);
+                system("clear");
+                break;
+            }
+            system("clear");
+            print_menu_screen();
+        }
+
+    return 0;
+}
+
 
 /* First step 
     to check if the word is in the list of allowed text            !=string::npos
@@ -24,5 +91,3 @@ int main(int argc, char* argv[]) {
     Testing Word with multiple letters, for instance Speed (if they guess 3 Es, only the first two should be colored)
 
 */
-    return 0;
-}
