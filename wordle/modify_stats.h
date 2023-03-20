@@ -1,3 +1,23 @@
+//Calculate the variables for the stats
+// modifies based on the round
+
+
+//after each iteration of the program,
+// TimesPlayed++;
+// averageAttempts = (int)reduce(AttemptsVec.begin(), AttemptsVec.end()) / TimesPlayed; // #include <numeric>
+// winPercentage = (float)wins / (float)TimesPlayed // #include <iomanip>
+// winPercentage.setprecision(2);
+// if (win == true){ // MAKE SURE TO USE A BOOLEAN CALLED WIN
+//     currentStreak++;
+//     if(currentStreak > longestStreak){
+//         longestStreak = currentStreak;
+//     }
+// }
+// elif (win == false){
+//     currentStreak = 0;
+// }
+// }
+// }
 #ifndef MODIFY_STATS_H
 #define MODIFY_STATS_H
 
@@ -81,26 +101,7 @@ void modify_stats(Stats& stats){ // & lets us change the real variables
             else std::cerr << "Error: Could not open file." << std::endl;     
         }
         #endif        
-//Calculate the variables for the stats
-// modifies based on the round
 
-
-//after each iteration of the program,
-// TimesPlayed++;
-// averageAttempts = (int)reduce(AttemptsVec.begin(), AttemptsVec.end()) / TimesPlayed; // #include <numeric>
-// winPercentage = (float)wins / (float)TimesPlayed // #include <iomanip>
-// winPercentage.setprecision(2);
-// if (win == true){ // MAKE SURE TO USE A BOOLEAN CALLED WIN
-//     currentStreak++;
-//     if(currentStreak > longestStreak){
-//         longestStreak = currentStreak;
-//     }
-// }
-// elif (win == false){
-//     currentStreak = 0;
-// }
-// }
-// }
 
 
 
