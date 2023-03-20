@@ -6,11 +6,14 @@
 #include <vector>
 
 using namespace std;
-void printTop(string COLOR) { cout << COLOR << " --- " << RESET; 
+void printTop(string COLOR) { 
+    cout << COLOR << " --- " << RESET; 
 }
-void printMiddle(char c, string COLOR) { cout << COLOR << "| " << c << " |" << RESET; 
+void printMiddle(char c, string COLOR) { 
+    cout << COLOR << "| " << c << " |" << RESET; 
 }
-void printBottom(string COLOR) { cout << COLOR << " --- " << RESET; 
+void printBottom(string COLOR) { 
+    cout << COLOR << " --- " << RESET; 
 }
 void printKeyboard(vector<vector<char>> keyboard, vector<vector<string>> colors) 
 {

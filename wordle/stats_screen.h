@@ -1,6 +1,9 @@
 #ifndef STATS_SCREEN_H
 #define STATS_SCREEN_H
 
+#include <iostream>
+#include <vector>
+#include <iomanip>
 //STATS >>
 void print_stats_screen(
 int timesPlayed,

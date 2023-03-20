@@ -13,12 +13,12 @@ void read_stats(Stats& stats) {
     // within this file, we store multiple variables
     // times played, vector of attempts (used to calculate avg attempts), amount of wins(divide by num of games), streak
     // longest streak 
-        stats.Words.clear()
-        stats.Attempts.clear()
-        stats.Wins.clear()
+        stats.Words.clear();
+        stats.Attempts.clear();
+        stats.Wins.clear();
         file >> stats.gameState
              >> stats.timesPlayed
-             >> stats.AverageAttempts
+             >> stats.averageAttempts
              >> stats.winPercentage
              >> stats.currentStreak
              >> stats.longestStreak;
@@ -68,8 +68,7 @@ void modify_stats(Stats& stats){ // & lets us change the real variables
             // same concept, but will give the win percentage if true.
             stats.currentStreak = currentStreak;
             stats.longestStreak = longestStreak;
-            file >> stats.gameState << ' ' << stats.timesPlayed << ' ' << stats.averageAttempts << ' ' << stats.winPercentage <<
-            ' ' << stats.currentStreak << ' ' << stats.longestStreak << '\n';
+            file << stats.gameState << ' ' << stats.timesPlayed << ' ' << stats.averageAttempts << ' ' << stats.winPercentage << ' ' << stats.currentStreak << ' ' << stats.longestStreak << '\n';
             for (int i = 0; i< stats.Words.size(); i++){
                 file << stats.Words[i] << ' ' << stats.Attempts[i] << ' ' << stats.Wins[i] << '\n';
             }

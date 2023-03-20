@@ -12,7 +12,7 @@ void printTopScreen(std::string COLOR) {
     std::cout << COLOR << " --- " << RESET;
     }
 void printMiddleScreen(char c, std::string COLOR) {
-    std::cout << COLOR << "| " << a << " |" << RESET;
+    std::cout << COLOR << "| " << c << " |" << RESET;
     }
 void printBottomScreen(std::string COLOR) {
     std::cout << COLOR << " --- " << RESET;
@@ -48,7 +48,7 @@ std::cout << "Press [enter] to continue";
 // DEFEAT SCREEN
 else if (gameState == "lose"){
 std::cout << std::endl;
-std::cout << "The word was: " << correctWord << std::endl;
+std::cout << "The word was: " << answer << std::endl;
 std::cout << std::endl;
 std::cout << "Better luck next time!" << std::endl;
 std::cout << std::endl;

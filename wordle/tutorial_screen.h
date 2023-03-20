@@ -5,6 +5,7 @@
 #define YELLOW "\033[33m"
 #define GREEN "\033[32m"
 
+#include<iostream>
 void print_Tutorial_screen(){
 // HOW TO PLAY, MAIN MENU
 std::cout << "=============================================" << std::endl;

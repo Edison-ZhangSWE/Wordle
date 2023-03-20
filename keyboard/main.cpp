@@ -4,49 +4,49 @@
 #define GREEN "\033[32m"
 #include <iostream>
 #include <fstream>
+#include <vector>
 #include "keyboardprint.h"
 
 using namespace std;
 
 int main(int argc, char* argv[]) {
-    int game_state = 0;
-    int previous_gamestate;
+    int gameState = 0;
+    int prev_gamestate;
     string line;
     std::vector<string> colorOptions = {BLACK, YELLOW, GREEN, RESET};
     std::vector<std::vector<string>> colors;
-    std::vector<std::vector<string>> previous_colors = {{RESET}};
+    std::vector<std::vector<string>> prev_colors = {{RESET}};
     std::vector<std::vector<char>> keyboard = {{'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'}, {'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L'}, {'Z', 'X', 'C', 'V', 'B', 'N', 'M'}};
 
     while(true) {
         ifstream file("../wordle/stats.txt");
             if(file.is_open()){
-                file >> game_state;
-            }
-        if (game_state = 0){ //wordle is not running
-            if (previous_gamestate != game_state){
+            file >> gameState;
+        if (gameState = 0){ //wordle is not running
+            if (prev_gamestate != gameState){
                 system("clear");
-                cout << "Please launch the wordle game." << endl;
+                cout << "Please launch the Wordle game." << endl;
                 ofstream file2("../wordle/keyboard.txt", ios::trunc);
                 file2.close();
-                previous_gamestate = game_state;
-                previous_colors = {{RESET}};
+                prev_gamestate = gameState;
+                prev_colors = {{RESET}};
             }
         }
-        else if (game_state = 1){ // Wordle is running, but not in game
-            if (previous_gamestate != game_state){
+        else if (gameState = 1){ // Wordle is running, but not in game
+            if (prev_gamestate != gameState){
                 system("clear");
                 cout << "Waiting for Wordle game round to start." << endl;
                 ofstream file2("../wordle/keyboard.txt", ios::trunc);
                 //truncrefreshes the keyboard, before every game
                 //reading the keyboard.txt file in wordle
                 file2.close();
-                previous_gamestate = game_state;
-                previous_colors = {{RESET}};
+                prev_gamestate = gameState;
+                prev_colors = {{RESET}};
 
             }
         }
-        else if (game_state = 2){ // wordle is currently in game
-            previous_gamestate = game_state;
+        else { // wordle is currently in game
+            prev_gamestate = gameState;
             colors.clear();
             for (std::vector<char> row : keyboard){
                 colors.push_back({});
@@ -57,22 +57,21 @@ int main(int argc, char* argv[]) {
                         for (int i = 0; i<3; i++){ // displaying the keyboard
                         // of the current game
                             getline(file2, line);
-                            if (line.find(c) != string::npos) {
-                                colors.back().back() = colorOptions[i];
-                            }
+                            if (line.find(c) != string::npos) colors.back().back() = colorOptions[i];
                         }
                     }
                     else cerr<< "Error: file could not be opened." << endl;
                 }
             }
-            if (previous_colors != colors) {
+            if (prev_colors != colors) {
                 system("clear");
                 printKeyboard(keyboard, colors);
-                previous_colors = colors;
+                prev_colors = colors;
+            }
         }
-        }
-        else cerr<< "Error: file could not be opened." << endl;
-        file.close();
+    }
+            else cerr<< "Error: file could not be opened." << endl;
+                file.close();
     }
     return 0;
     }
