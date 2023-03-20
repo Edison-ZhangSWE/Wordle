@@ -13,16 +13,16 @@ int main(int argc, char* argv[]) {
     int gameState = 0;
     int prev_gamestate;
     string line;
-    std::vector<string> colorOptions = {BLACK, YELLOW, GREEN, RESET};
-    std::vector<std::vector<string>> colors;
-    std::vector<std::vector<string>> prev_colors = {{RESET}};
-    std::vector<std::vector<char>> keyboard = {{'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'}, {'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L'}, {'Z', 'X', 'C', 'V', 'B', 'N', 'M'}};
+    vector <string> colorOptions = {BLACK, YELLOW, GREEN, RESET};
+    vector <vector<string>> colors;
+    vector <vector<string>> prev_colors = {{RESET}};
+    vector <vector<char>> keyboard = {{'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'}, {'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L'}, {'Z', 'X', 'C', 'V', 'B', 'N', 'M'}};
 
     while(true) {
         ifstream file("../wordle/stats.txt");
-            if(file.is_open()){
+        if (file.is_open()){
             file >> gameState;
-        if (gameState = 0){ //wordle is not running
+        if (gameState == 0){ //wordle is not running
             if (prev_gamestate != gameState){
                 system("clear");
                 cout << "Please launch the Wordle game." << endl;
@@ -32,7 +32,7 @@ int main(int argc, char* argv[]) {
                 prev_colors = {{RESET}};
             }
         }
-        else if (gameState = 1){ // Wordle is running, but not in game
+        else if (gameState == 1){ // Wordle is running, but not in game
             if (prev_gamestate != gameState){
                 system("clear");
                 cout << "Waiting for Wordle game round to start." << endl;
@@ -48,7 +48,7 @@ int main(int argc, char* argv[]) {
         else { // wordle is currently in game
             prev_gamestate = gameState;
             colors.clear();
-            for (std::vector<char> row : keyboard){
+            for (vector<char> row : keyboard){
                 colors.push_back({});
                 for (char c : row){
                     ifstream file2("../wordle/keyboard.txt");

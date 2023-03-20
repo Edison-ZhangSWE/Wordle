@@ -20,7 +20,7 @@ void printBottomScreen(std::string COLOR) {
 void printScreen(std::vector<std::string> guesses, std::string answer, std::string gameState, std::vector<std::vector<std::string>> colors){
     system("clear");
 
-for (int i = 0; i<5; i++){ // loops through our guesses
+for (int i = 0; i<guesses.size(); i++){ // loops through our guesses
     for (int j = 0; j<5; j++){
         printTopScreen(colors[i][j]); // prints the top of the header with our specified color
 }

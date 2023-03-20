@@ -46,28 +46,22 @@ void modify_stats(Stats& stats){ // & lets us change the real variables
     std::ofstream file("stats.txt", std::ios::trunc); // ofstream takes a file, and rewrites the data instead
     //we will use this to hold our stats, and update our variables (while reading it with the previous function)
     if (file.is_open()){
-        int numWins = 0; //(increment after each win)
-        int attemptSum = 0;
-        int currentStreak = 0;
-        int longestStreak = 0;
+        int numWins = 0, attemptSum = 0, currentStreak = 0, longestStreak = 0;
         for (std::string win : stats.Wins){
             if (win == "Yes"){
-                numWins ++, currentStreak ++;
+                numWins++, currentStreak++;
                 if (currentStreak > longestStreak) longestStreak = currentStreak;
             }  
-            else{ //this means it was a loss.
-                currentStreak = 0;
+            else currentStreak = 0;//this means that t was a loss
             }
-        }
     
-        for (int i : stats.Attempts) attemptSum += 1; 
+        for (int i : stats.Attempts) attemptSum += i; 
             stats.timesPlayed = stats.Words.size();
             stats.averageAttempts = stats.timesPlayed ? attemptSum/stats.Attempts.size() : 0; 
             // if its true, it will give the number, if its false it will give 0.
             stats.winPercentage = stats.timesPlayed ? ((float)numWins/stats.Wins.size()) * 100 : 0;
             // same concept, but will give the win percentage if true.
-            stats.currentStreak = currentStreak;
-            stats.longestStreak = longestStreak;
+            stats.currentStreak = currentStreak, stats.longestStreak = longestStreak;
             file << stats.gameState << ' ' << stats.timesPlayed << ' ' << stats.averageAttempts << ' ' << stats.winPercentage << ' ' << stats.currentStreak << ' ' << stats.longestStreak << '\n';
             for (int i = 0; i< stats.Words.size(); i++){
                 file << stats.Words[i] << ' ' << stats.Attempts[i] << ' ' << stats.Wins[i] << '\n';
@@ -75,7 +69,7 @@ void modify_stats(Stats& stats){ // & lets us change the real variables
             file.close();
         }
         else std::cerr << "Error: Could not open file." << std::endl;
-}
+        }
         void ResetStatsFile() {
             std::ofstream file("stats.txt", std::ios::trunc); //clears the files
             if(file.is_open()){
@@ -86,7 +80,7 @@ void modify_stats(Stats& stats){ // & lets us change the real variables
             }
             else std::cerr << "Error: Could not open file." << std::endl;     
         }
-#endif        
+        #endif        
 //Calculate the variables for the stats
 // modifies based on the round
 

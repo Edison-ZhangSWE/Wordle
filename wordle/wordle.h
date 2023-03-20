@@ -1,9 +1,5 @@
 #ifndef WORDLE_H
 #define WORDLE_H
-#define RESET "\033[0m"
-#define BLACK "\033[30m"
-#define YELLOW "\033[33m"
-#define GREEN "\033[32m"
 
 #include <iostream>
 #include <sstream>
@@ -16,6 +12,7 @@
 #include "main_screen.h"
 using namespace std;
 // WORDLE LOGIC
+
 string randomWordle() {
     random_device rd;
     mt19937 gen(rd());
@@ -104,7 +101,7 @@ void updateKeyboard(vector<vector<string>> colors, string guess_upper) {
     keyboard_file_out.close();
 }
 
-void startGame(Stats & stats){
+void startGame(Stats& stats){
     vector <string> guesses;
     vector <vector<string>> colors;
     string gameState = "active";
@@ -138,8 +135,8 @@ void startGame(Stats & stats){
             //in the format of guess, answer.
             updateKeyboard(colors, guess);
 
-            if (guess == answer) gameState = 'win';
-            else if (guesses.size() == 6) gameState = 'lose';
+            if (guess == answer) gameState = "win";
+            else if (guesses.size() == 6) gameState = "lose";
             printScreen(guesses, answer, gameState, colors);
         }
         stats.Words.push_back(answer);
@@ -148,7 +145,7 @@ void startGame(Stats & stats){
         cin.ignore();
         while (!gameState.empty()) getline(cin, gameState); // does not, game state is not empty.
     }
-        #endif
+#endif
     
 /* First step 
     to check if the word is in the list of allowed text            !=string::npos

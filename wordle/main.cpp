@@ -8,16 +8,16 @@
 using namespace std;
     struct Stats{
         int gameState, timesPlayed, averageAttempts, winPercentage, currentStreak, longestStreak;
-        vector<string> Words;
-        vector<string> Wins;
+        vector<string> Words, Wins;
         vector<int> Attempts;
     };
 
-    #include "menu_screen.h"
+    #include "wordle.h"
     #include "modify_stats.h"
+    #include "menu_screen.h"
     #include "stats_screen.h"
     #include "tutorial_screen.h"
-    #include "wordle.h"
+   
 
     int main(int argc, char* argv[]) {
         Stats stats;
@@ -31,7 +31,13 @@ using namespace std;
 
         while (cin >> user_option){ // makes sure that the user's input is within the parameters of 1-5.
             cin.ignore(); //51234
-            if (user_option == "1"){ // starts a game, updates the stats file before the game ends
+            if (user_option == "5"){ // exits the wordle game, updates the game state so the keyboard knows
+                stats.gameState = 0;
+                modify_stats(stats);
+                system("clear");
+                break;
+            }
+            else if (user_option == "1"){ // starts a game, updates the stats file before the game ends
                 system("clear");
                 stats.gameState = 2;
                 modify_stats(stats);
@@ -49,7 +55,15 @@ using namespace std;
             else if (user_option == "3"){ // prints out stats screen
                 while (!user_option.empty()){
                     system("clear");
-                    print_stats_screen(stats.timesPlayed, stats.averageAttempts, stats.winPercentage, stats.currentStreak, stats.longestStreak, stats.Words, stats.Attempts, stats.Wins);
+                    print_stats_screen(
+                        stats.timesPlayed, 
+                        stats.averageAttempts, 
+                        stats.winPercentage, 
+                        stats.currentStreak, 
+                        stats.longestStreak, 
+                        stats.Words, 
+                        stats.Attempts, 
+                        stats.Wins);
                     getline(cin, user_option);
                 }
             }
@@ -58,16 +72,19 @@ using namespace std;
                 read_stats(stats);
                 while (!user_option.empty()){
                     system("clear");
-                    print_stats_screen(stats.timesPlayed, stats.averageAttempts, stats.winPercentage, stats.currentStreak, stats.longestStreak, stats.Words, stats.Attempts, stats.Wins);
+                    print_stats_screen(
+                        stats.timesPlayed, 
+                        stats.averageAttempts, 
+                        stats.winPercentage, 
+                        stats.currentStreak, 
+                        stats.longestStreak, 
+                        stats.Words, 
+                        stats.Attempts, 
+                        stats.Wins);
                     getline(cin, user_option);
                 }
             }
-            else if (user_option == "5"){ // exits the wordle game, updates the game state so the keyboard knows
-                stats.gameState = 0;
-                modify_stats(stats);
-                system("clear");
-                break;
-            }
+            
             system("clear");
             print_menu_screen();
         }
